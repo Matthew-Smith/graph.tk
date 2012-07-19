@@ -1,0 +1,29 @@
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:fixed;
+  left:0;
+  top:0;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+
+#boxes #about {
+  width:510px; 
+  height:450px;
+  padding:10px;
+  background-color:#ffffff;
+  border:2px solid #a1a1a1;
+  border-radius:20px; 
+  -moz-border-radius:20px;
+}

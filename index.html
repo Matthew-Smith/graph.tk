@@ -1,1 +1,94 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="apple-touch-icon" href="apple-touch-icon.png" /><meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; user-scalable=false;"/><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="default" /><link rel="apple-touch-startup-image" href="apple-touch-startup-image.png" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" /><meta name="description" content="Online graph sketching app that can graph functions and numerically solve differential equations. Requires Javascript HTML 5." /><title>graph.tk</title><link rel="stylesheet" type="text/css" href="min/6068225.css" /></head><body><h3><noscript>Please enable javascript!<br /><a href="http://graph.tk/about/">More info</a></noscript></h3><script type="text/javascript">document.body.firstChild.appendChild(document.createTextNode("Loading..."));</script><!--[if IE]><script type="text/javascript" src="excanvas.compiled.js"></script><![endif]--><script type="text/javascript" src="min/6068225.js"></script><script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("UA-15603369-1");pageTracker._trackPageview();}catch(err){}</script></body></html>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	<meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; user-scalable=false;"/>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+	<link rel="apple-touch-startup-image" href="apple-touch-startup-image.png" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+	<meta name="description" content="Online graph sketching app that can graph functions and numerically solve differential equations. Requires Javascript HTML 5." />
+
+	<title>graph guess</title>
+	<link rel="stylesheet" type="text/css" href="mathquill.css" />
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" type="text/css" href="popup.css" />
+	
+	<link rel="stylesheet" type="text/css" href="ddsmoothmenu.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
+	<script type="text/javascript" src="ddsmoothmenu.js"></script>
+		<script type="text/javascript">
+			ddsmoothmenu.init({
+				mainmenuid: "topmenu", //menu DIV id
+				orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+				classname: 'ddsmoothmenu', //class added to menu's outer DIV
+				contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+			})
+		</script>
+	
+	<style type ="text/css"> 
+		.graphsection
+		{
+			position: absolute;
+			top: 33px;
+			overflow: hidden;
+			z-index: -1;
+		}
+	</style>
+	
+</head>
+<body>
+	<noscript><h3>Please enable javascript!</h3><br/></noscript>
+	
+	<div id="topmenu" class="ddsmoothmenu" z-index:5>
+		<ul >  
+			<li>
+				<a href="#">File</a>
+				<ul>  
+					<li><a href="#">Save</a></li>  
+					<li><a href="#">Load</a></li> 
+				</ul> 
+			</li>  
+			<li>
+				<a href="#">Help</a>
+				<ul>  
+					<li><a href="#">Contact</a></li>  
+					<li><a href="#about" name="modal">About</a></li>  
+				</ul> 
+			</li> 
+		</ul>  
+		<br style="clear: left" />
+	</div>
+
+	<div id="graphSection" class="graphsection">
+		
+		<!--[if IE]><script type="text/javascript" src="excanvas.compiled.js"></script><![endif]-->
+		<script type="text/javascript" src="mathquill_modified.js"></script>
+		<script type="text/javascript" src="math.js"></script>
+		<script type="text/javascript" src="ui.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</div>
+	
+	<div id="boxes">
+
+		<div id="about" class="window">
+			<a href="http://www.carleton.ca/" target="_blank">
+				<img src="images/CarletonWide_K_186.gif" border="0" alt="Carleton University" title="Carleton University"/>
+			</a>
+			<h3>Copyright Carleton University 2012</h3><br/>
+			<a href="http://nmai.ca" target="_blank">Network Management & Artificial Intelligence Lab</a><br/><br/>
+			
+			<p>This program is free software: you can redistribute it and/or modify
+			it under the terms of the <a href="http://www.gnu.org/licenses/lgpl.html" target="_blank">GNU Lesser General Public License</a>
+			as published by the Free Software Foundation, either version 3 of the License, or
+			(at your option) any later version.</p>
+		</div>
+
+		<!-- Mask to cover the whole screen -->
+		<div id="mask"></div>
+	</div>
+
+</body>
+</html>
+
