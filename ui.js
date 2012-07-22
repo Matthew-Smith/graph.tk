@@ -31,12 +31,12 @@ var default_messages={
     "version":"version",
     "type":"Type",
     "add":"Add a new equation/graph",
-    "console":"Show Console",
-    "help":"Help Page",
     "png":"Take Screenshot Image",
     "showhide":"Show/Hide Graph",
     "config":"Configure",
-    "reload":"Reset Graph"
+    "calculator":"Show On-Screen Input",
+	"integral":"Integral",
+	"log":"Log base 10"
 };
 
 app.config={
@@ -66,19 +66,15 @@ app.ui=(function(){
     }
   var draw;
   var ctx;
-  var ptd,con,proto,conin,logt,ul;
+  var ptd,calc,proto,ul;
     /*
         ptd: (0,0)
-        con: Console div
         proto: prototype function li.
-        conin: Mathquill input span for console.
-        logt: console results div.
     
     */
   function resize(){
       width=window.innerWidth  || document.body.clientWidth;
       height=window.innerHeight|| document.body.clientHeight || 120;//120 for iframe default
-        logt.style.maxHeight=~~(height-85)+"px";
       canvas.width = width;
       canvas.height= height;
       ctx && draw();
@@ -222,7 +218,6 @@ app.ui=(function(){
             if(alreadydrawnpoints.indexOf(_nx+","+_ny)===-1){
               alreadydrawnpoints.push(_nx+","+_ny);
             
-                          //console.log(pt);
                           //Stupid Firefox!
                           if(!isNaN(_nx) && !isNaN(_ny) && _ny<overtop && _ny>overbottom && _nx<overright && _nx>overleft){
                               try{
@@ -279,13 +274,6 @@ app.ui=(function(){
   }
 
 
-
-
-
-
-
-
-
   var drawwhiledrag_c=0;
   function mousedown(e) {
         if(e.button != 0 || !allowdrag){return;}
@@ -294,7 +282,7 @@ app.ui=(function(){
       drag = true;
       canvas.style.cursor = "url(grabbing.gif), grabbing";
       if (!drawwhiledrag_c) {
-          setTimeout(drawwhiledrag, 1000);
+          setTimeout(drawwhiledrag, 50);
           drawwhiledrag_c++;
       }
   };
@@ -393,7 +381,7 @@ app.ui=(function(){
 		}
 		drag=true;
 		if (!drawwhiledrag_c) {
-	        setTimeout(drawwhiledrag, 1000);
+	        setTimeout(drawwhiledrag, 50);
 	        drawwhiledrag_c++;
 	    }
 		
@@ -498,7 +486,7 @@ app.ui=(function(){
       if (drag) {
           perform_translation();
           draw();
-          setTimeout(drawwhiledrag, 1000);
+          setTimeout(drawwhiledrag, 50);
       }else{
           drawwhiledrag_c--;
       }
@@ -899,64 +887,34 @@ app.ui=(function(){
             ptd.style.display="none";
         }
     
-    con=document.createElement("div");
-    con.id="con";
-    con.className="overlay";
-    con.style.display="none";
-        
-        logt=document.createElement("div");
-        logt.id="logt";
-        logt.className="monospace";
-        con.appendChild(logt);
-        
-        var conin_=document.createElement("span");
-        conin_.id="conin";
-        con.appendChild(conin_);
-        
-        
-    document.body.appendChild(con);
-        
-    conin=document.getElementById("conin");
-        $(conin).mathquill("editable");
-    //$(conin).mathquill("redraw");
-        
-    conin.addEventListener("keydown",function(event){
-      if(event.which==13){
-                try{
-                var needsredraw=false;
-                conin.last=$(conin).mathquill("latex");
-                var out=p_latex(conin.last).simplify();
-                if(out.type==eqtype.equality){
-                    if(typeof out[0]=="string"){
-                        if(out[0]=="e" || out[0]=="pi"){
-                            throw(MessageStrings.protected);
-                            return;
-                        }
-                        app.variables[out[0]]=out[1].eval();
-                        needsredraw=true;
-                    }
-                }
-                var can_eval_code=out.canEval();
-                if(can_eval_code==false || can_eval_code==2){
-                    app.ui.console.log(((out.getString().markup())));
-                }else{
-                    app.ui.console.log(generateJSON(usr.eval(out.getString(0,1))));
-                }
-                $(conin).mathquill("latex","");
-                if(needsredraw){
-                    draw();
-                }
-                }catch(ex){
-                    app.ui.console.warn(ex.toString());
-                }
-      }
-      else if(event.which==38 && event.shiftKey){
-                if(!/\\[a-z]*|[^\s]/ig.test(conin.last)){
-                    conin.last=" ";
-                }
-                $(conin).mathquill("latex",conin.last);
-      }
-    },false);
+    calc=document.createElement("div");
+    calc.id="calc";
+    calc.className="overlay";
+    calc.style.display="none";
+	
+	
+	var mathbuttons=document.createElement("div");
+    mathbuttons.className="mathbuttons";
+        var newcalcbtn=document.createElement("input");
+        newcalcbtn.value="integral";
+        newcalcbtn.type="calcbutton";
+        newcalcbtn.title=app.ui.messages.integral;
+        newcalcbtn.onclick=function(){app.integral()};
+        app.ui.buttons.integral = newcalcbtn;
+        mathbuttons.appendChild(newcalcbtn);
+	
+        var newcalcbtn=document.createElement("input");
+        newcalcbtn.value="log";
+        newcalcbtn.type="calcbutton";
+        newcalcbtn.title=app.ui.messages.log10;
+        newcalcbtn.onclick=function(){app.log10()};
+        app.ui.buttons.log10 = newcalcbtn;
+        mathbuttons.appendChild(newcalcbtn);
+	
+	calc.appendChild(mathbuttons);
+	
+	
+	document.body.appendChild(calc);
 
     var funcs=document.createElement("div");
     funcs.className="overlay";
@@ -1001,14 +959,6 @@ app.ui=(function(){
         buttons.appendChild(newfuncbtn);
         
         var newfuncbtn=document.createElement("input");
-        newfuncbtn.value=">_";
-        newfuncbtn.type="button";
-        newfuncbtn.title=app.ui.messages.console;
-        newfuncbtn.onclick=function(){app.console()};
-        app.ui.buttons.console = newfuncbtn;
-        buttons.appendChild(newfuncbtn);
-        
-        var newfuncbtn=document.createElement("input");
         newfuncbtn.value=".png";
         newfuncbtn.type="button";
         newfuncbtn.title=app.ui.messages.png;
@@ -1017,34 +967,22 @@ app.ui=(function(){
         buttons.appendChild(newfuncbtn);
         
         var newfuncbtn=document.createElement("input");
-        newfuncbtn.value="reload";
+        newfuncbtn.value="calculator";
         newfuncbtn.type="button";
-        newfuncbtn.title=app.ui.messages.reload;
-        newfuncbtn.style.display='none';
-        newfuncbtn.onclick=function(){location.reload()};
-        app.ui.buttons.reload = newfuncbtn;
+        newfuncbtn.title=app.ui.messages.calc;
+        newfuncbtn.onclick=function(){app.calculator()};
+        app.ui.buttons.calculator = newfuncbtn;
         buttons.appendChild(newfuncbtn);
         
         if(app.view_configured==undefined && false) {
-          var newfuncbtn=document.createElement("input");
-          newfuncbtn.value="config";
-          newfuncbtn.type="button";
-          newfuncbtn.title=app.ui.messages.config;
-          newfuncbtn.onclick=function(){app.ui.modalConfig()};
-          app.ui.buttons.config = newfuncbtn;
-          buttons.appendChild(newfuncbtn);
+			var newfuncbtn=document.createElement("input");
+			newfuncbtn.value="config";
+			newfuncbtn.type="button";
+			newfuncbtn.title=app.ui.messages.config;
+			newfuncbtn.onclick=function(){app.ui.modalConfig()};
+			app.ui.buttons.config = newfuncbtn;
+			buttons.appendChild(newfuncbtn);
         }
-        
-        var alink=document.createElement("a");
-        alink.href="about/";
-        alink.innerHTML = "&nbsp;";
-        alink.className = 'help_button';
-        alink.target="_blank";
-        alink.title=app.ui.messages.help;
-        app.ui.buttons.help = alink;
-
-        
-        buttons.appendChild(alink);
         
         funcs.appendChild(buttons);
 		document.body.appendChild(funcs);
@@ -1074,11 +1012,8 @@ app.ui=(function(){
 			window.addEventListener("mousewheel",mousewheel, false);
 			window.addEventListener("DOMMouseScroll",mousewheel, false);
 
-			con.addEventListener("mousewheel",function(e){e.stopPropagation();},false);
-			con.addEventListener("DOMMouseScroll",function(e){e.stopPropagation();},false);
 		}else{
 			window.onmousewheel=window.DOMMouseScroll=mousewheel;
-			con.onmousewheel=window.onDOMMouseScroll=function(e){e.stopPropagation();};
 		}
 		document.body.removeChild(document.body.firstChild);
 		//we may have to implement scaling if browsers don't work properly
@@ -1163,64 +1098,26 @@ app.ui=(function(){
   }//end init();
   };//end ui
   
-
-  //Is console visible:
-  var _console=false;
-    ui.modalConfig=function(){
-        alert("Settings Panel Not Implemented Yet");
-    };
-  ui.console={"show":function(){
-        con.style.display="block";
-        _console=true;
-    },"clear":function(){
-        while(logt.firstChild){
-            logt.removeChild(logt.firstChild);
-        }
-        return "Cleared";
-  },"hide":function(){
-        con.style.display="none";
-        _console=false;
-  },"toggle":function(){
-        if(!_console){
-            app.ui.console.show();
-            $(conin).focus();
-            return;
-    }
-        app.ui.console.hide();
-    },"warn":function(x,noshow){
-        var div=document.createElement("div");
-        var warn=document.createElement("div");
-        warn.className="warn";
-        div.appendChild(warn);
-        div.style.minHeight="23px";
-        if(typeof x !="object"){
-            div.appendChild(document.createTextNode(x));
-        }else{
-            div.appendChild(x);
-    }
-        logt.appendChild(div);
-        if(!noshow && !_console){
-      app.ui.console.show();
-    }
-        logt.scrollTop=1e8;    
-    },"log":function(x,noshow){
-        if(typeof x !="object"){
-            var div=document.createElement("div");
-            div.appendChild(document.createTextNode(x));
-            logt.appendChild(div);
-        }else{
-            logt.appendChild(x);
-    }
-        if(!noshow && !_console){
-      app.ui.console.show();
-    }
-        logt.scrollTop=1e8;
-
-  }};
-  
-  return ui;
+	//Is calculator visible:
+	var _calculator=false;
+	ui.calculator={
+		"show":function()
+		{
+			calc.style.display="block";
+			_calculator=true;
+		},
+		"hide":function(){
+			calc.style.display="none";
+			_calculator=false;
+		},
+		"toggle":function(){
+			if(!_calculator){
+				app.ui.calculator.show();
+				return;
+			}
+			app.ui.calculator.hide();
+		}
+	};  
+	
+	return ui;
 })();
-
-function clear(){
-    return app.ui.console.clear();
-}

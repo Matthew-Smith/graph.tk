@@ -16,7 +16,7 @@ body{
     box-shadow:0px 0px 5px black;
     box-shadow:0px 0px 5px black;
     
-    z-Index:80000;
+    z-Index:1;
     color:black;
     opacity:0.8;
     padding:4px;
@@ -24,7 +24,7 @@ body{
 }
 li:hover .delete{visibility:visible}
 .delete{
-    background:url(buttons.png) no-repeat;
+    background:url(images/buttons.png) no-repeat;
 	width:20px;
 	visibility:hidden;
 	height:21px;
@@ -41,22 +41,31 @@ li:hover .delete{visibility:visible}
     opacity:1.0;
 }
 
-#con{
-    top:0;
-    left:0;
-    background:white;
+#calc{
+	background:white;
+    bottom:5px;
+    right:10px;
+	height:136px;
+	width:311px;
     font-size:small;
-    padding:8px;
-    border:8px solid #eee;
-    opacity:0.97;
+    padding:2px;
+    border:2px solid #eee;
+    opacity:0.8;
 }
-input[type=button]:hover,a.help_button:hover{
+
+input[type=button]:hover{
 	opacity:1.0;
 }
+input[type=button]:active{
+	opacity:1.0;
+	border:1px solid #333333;
+	border-radius:3px;
+	-moz-border-radius:3px;
+}
 input[type=button]{
-	background:url(buttons.png);
+	background:url(images/buttons.png);
 	border:none;
-	opacity:0.7;
+	opacity:0.9;
 	width:30px;
 	height:21px;
 	color:rgba(0,0,0,0.0);
@@ -64,6 +73,28 @@ input[type=button]{
 	margin-top:3px;
 	margin-bottom:4px;
 }
+
+input[type=calcbutton]:hover{
+	opacity:1.0;
+}
+input[type=calcbutton]:active{
+	opacity:1.0;
+	border:1px solid #333333;
+	border-radius:3px;
+	-moz-border-radius:3px;
+}
+input[type=calcbutton]{
+	background:url(images/calculator_buttons.png);
+	border:none;
+	opacity:0.5;
+	width:34px;
+	height:27px;
+	color:rgba(0,0,0,0.0);
+	margin-left:1px;
+	margin-top:1px;
+}
+
+
 h3{text-align:center;padding-top:1em}
 .buttons{
     position:relative;
@@ -91,37 +122,21 @@ h3{text-align:center;padding-top:1em}
     top:0;
     right:0;
 }
-a.help_button{
-	background:url(buttons.png);
-	border:none;
-	opacity:0.7;
-	width:30px;
-	height:21px;
-	color:rgba(0,0,0,0.0);
-	margin-left:4px;
-	margin-top:3px;
-	margin-bottom:4px;
-	background-position:0px 42px;
-	margin-right:6px;
-}
 input[value=".png"]{
 	background-position:30px 0px;
 }
-input[value=">_"]{
-	background-position:60px 0px;
-}
-input[value="reload"]{
-	background-position:0px 21px;
+input[value="calculator"]{
+	background-position:0px -21px;
 }
 input[value="config"]{
 	background-position:-30px 21px;
 }
 #funcs{
-    right:0;
+	top:33px;
+    right:10px;
 	opacity:1.0;
     background:rgba(255,255,255,0.8);
     padding:0;
-    top:0
 }
 #funcs ul{
     list-style: none;
@@ -144,7 +159,7 @@ input[value="config"]{
     padding-right:4px;
 }
 #funcs ul aside:before{
-    background:url(buttons.png) -62px -21px no-repeat;
+    background:url(images/buttons.png) -62px -21px no-repeat;
     display:block;
     width:20px;
     float:left;
@@ -162,7 +177,7 @@ input[value="config"]{
 	border-left:1px solid rgba(255,255,255,0.4);
 	border-right:1px solid rgba(0,0,0,0.7);
 	border-bottom:1px solid rgba(0,0,0,0.85);
-	background:url(sw.png) repeat-x;
+	background:url(images/sw.png) repeat-x;
 	margin-right:3px;
 	
 }
@@ -181,7 +196,7 @@ input[value="config"]{
 
 #ptd{
     position:fixed;
-    z-Index:80000;
+    z-Index:1;
     color:black;
     opacity:0.6;
     left:8px;
@@ -195,37 +210,10 @@ input[value="config"]{
 
 }
 
-#conin{
-    background:url(buttons.png) -83px -21px no-repeat;
-    border:none;
-    padding:0;
-    outline:none;
-    width:100%;
-    padding-left:10px
-}
 .monospace{
     font-family:'Menlo','Andale Mono', Consolas, 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Monaco, monofur, monospace;
 }
 
-
-#logt{
-    background:white;
-    width:300px;
-    padding:2px;
-    -webkit-user-select:text;
-    -moz-user-select:text;
-    -o-user-select:text;
-    user-select:text;
-    font-size:90%;
-    max-height:500px;
-    overflow:auto;
-}
-#logt .warn{
-    background:url(buttons.png) -62px -21px no-repeat;
-    width:20px;
-    height:20px;
-    float:left;
-}
 
 
 ul.json li.end b:before{

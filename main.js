@@ -1,7 +1,7 @@
 var usr=(function(){
 var usr={"eval":function(_____d){
     return eval(_____d);
-},"clear":function(){return app.ui.console.clear();}};
+}};
 
 return usr;
 })();
@@ -203,7 +203,6 @@ function compile(n){
                 var rts=fn.differentiate().simplify().roots();
                 for(var r=0;r<rts.length;r++){
                     var array=[0,0].setType(eqtype.discretevector);
-                    //console.log(fn.getString());
                     
                     array[0]=rts[r];
                     array[1]=fn.dreplace("x",array[0]).simplify();
@@ -218,7 +217,6 @@ function compile(n){
             
             try{
                 var array=[0,0].setType(eqtype.discretevector);
-                //console.log(fn.getString());
                 //Find y intercept(s). I.e. f(0), or just work for multi-valued functions.
                 array_math=fn.dreplace(/^x$/,0);
                 array[1]=array_math.simplify();
@@ -243,7 +241,6 @@ function compile(n){
                 
                 }
                 
-                //console.log("ok");
                 //ret.xc.push(funcs[i].inverse().dreplace(/^x$/,0).simplify().simplify());
             }catch(ex){
                 //alert(ex);
@@ -305,7 +302,6 @@ function compile(n){
                 var rts=fn.dreplace("y","x").differentiate().simplify().roots();
                 for(var r=0;r<rts.length;r++){
                     var array=[0,0].setType(eqtype.discretevector);
-                    //console.log(fn.getString());
                     
                     array[0]=rts[r];
                     array[1]=fn.dreplace("x",array[0]).simplify();
@@ -320,7 +316,6 @@ function compile(n){
             
             try{
                 var array=[0,0].setType(eqtype.discretevector);
-                //console.log(fn.getString());
                 //Find y intercept(s). I.e. f(0), or just work for multi-valued functions.
                 array_math=fn.dreplace(/^y$/,0);
                 array[0]=array_math.simplify();
@@ -345,7 +340,6 @@ function compile(n){
                 
                 }
                 
-                //console.log("ok");
                 //ret.xc.push(funcs[i].inverse().dreplace(/^x$/,0).simplify().simplify());
             }catch(ex){
                 //alert(ex);
@@ -595,8 +589,8 @@ app.add=function(n,disabled){
 app.png=function(){
     app.ui.png();
 };
-app.console=function(){
-    app.ui.console.toggle();
+app.calculator=function(){
+    app.ui.calculator.toggle();
 };
 app.get_state=function() {
   var res = {};
@@ -607,6 +601,7 @@ app.get_state=function() {
 
   res.scale = $.map(app.ui.get_scale(), function(i) { return parseInt(i); });
   res.camera = $.map(app.ui.get_camera(), function(i) { return parseInt(i); });
+  res.calculator = $.map(app.ui.get_calculator(), function(i) { return parseInt(i); });
   res.legend = app.ui.legend() ? 1 : 0;
   res.block = app.ui.block() ? 1 : 0;
   return res;
@@ -618,7 +613,6 @@ app.refresh=function(changes){
     for(var i=0;i<graphs.length;i++){
         for(var d=0;d<graphs[i].dependence.length;d++){
             if(changes.indexOf(graphs[i].dependence[d])!=-1){
-                //app.ui.console.log("auto-update");
                 var c=compile(graphs[i].equation);
                 //Copy properties from c to graphs[i]
                 for(_k in c){
@@ -740,11 +734,8 @@ function hashDidChange(){
         if(data.block != undefined) {
             app.ui.block(!!data.block);
         }
-        if(data.console != undefined) {
-            app.ui.button('>_', data.console);
-        }
-        if(data.reload != undefined) {
-            app.ui.button('reload', data.reload);
+        if(data.calculator != undefined) {
+            app.ui.button('calculator', data.calculator);
         }
         if(data.legend != undefined) {
             app.ui.legend(!!data.legend);
@@ -810,9 +801,6 @@ app.init=function (){
     span.className="mathquill-rendered-math mathquill-editable";
     span.innerHTML='<br /><span id="example_text">'+app.ui.messages.example+'</span>: <span id="type_text">'+app.ui.messages.type+'</span> <span class="textarea"><textarea></textarea></span><span class="fraction"><span class="numerator"><var>d</var></span><span class="denominator"><var>d</var><var>x</var></span><span style="width:0">&nbsp;</span></span><span><span class="paren" style="font-size: 1.89542em; ">(</span><span class=""><span class="fraction"><span class="numerator"><span>1</span></span><span class="denominator"><var>x</var></span><span style="width:0">&nbsp;</span></span></span><span class="paren" style="font-size: 1.89542em; ">)</span></span>';
     div.appendChild(span);
-    app.ui.console.log(div,true);
-    
-    //app.ui.console.log("Example: Type d/dx (1/x)",true);
     
     //app.add("x^2");
 };
