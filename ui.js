@@ -676,26 +676,29 @@ app.ui=(function(){
         ul=document.getElementById("graphs");
       }
       ul.removeChild(n);
-    },"png":function(render){
+    },
+	"png":function(render){
       if(render === false) {
         return canvas.toDataURL("image/png");
       } else {
         window.location=canvas.toDataURL("image/png");
       }
-    },"add":function(n){
-    var li=proto.cloneNode(true);
-    li.id="eq-"+n.gid;
-    $(li).find(":checkbox").attr('checked', !n.disabled);
-    if(!ul){
-      ul=document.getElementById("graphs");
-    }
-    ul.appendChild(li);
-    var inputbox = li.getElementsByClassName("matheditor")[0];
+    },
+	"add":function(n){
+		var li=proto.cloneNode(true);
+		li.id="eq-"+n.gid;
+		$(li).find(":checkbox").attr('checked', !n.disabled);
+		if(!ul){
+			ul=document.getElementById("graphs");
+		}
+		ul.appendChild(li);
+		var inputbox = li.getElementsByClassName("matheditor")[0];
         var warn_ = li.getElementsByTagName("aside")[0];
         var b_=li.firstChild;
         var check_=li.firstChild.firstChild;
         var delete_=li.getElementsByClassName("delete")[0];
-    inputbox.appendChild(document.createTextNode(n.equation||""));
+		inputbox.appendChild(document.createTextNode(n.equation||""));
+		inputbox.id="inputbox";
         check_.addEventListener("change",function(e){
             for(var i=0;i<graphs.length;i++){
                 if(graphs[i].gid==n.gid){
@@ -709,7 +712,7 @@ app.ui=(function(){
         b_.style.backgroundColor=n.color;
         
         //The below code is for focusing on the mathquill when clicking to the right of it. It doesn't work with the latest mathquill. (2011-04-03)
-    //inputbox.addEventListener("mouseup",function(e){e.stopPropagation();},false);
+		//inputbox.addEventListener("mouseup",function(e){e.stopPropagation();},false);
     
         //b_.addEventListener("mouseup",function(e){e.stopPropagation();},false);
         
@@ -717,14 +720,14 @@ app.ui=(function(){
       $(inputbox).trigger({ type: "keydown", ctrlKey: true, which: 65 });
       $(inputbox).trigger({ type: "keydown", which: 39 });
             $(inputbox).focus();
-    },false);
+		},false);
         */
         
         delete_.addEventListener("mouseup",function(e){app.remove(li);e.stopPropagation();},false);
         
-    $(inputbox).mathquill("editable");
-    //$(inputbox).mathquill("redraw");
-        
+		$(inputbox).mathquill("editable");
+		//$(inputbox).mathquill("redraw");
+					
         $(inputbox).bind("keyup",
         function(){
             for(var i=0;i<graphs.length;i++){
@@ -778,31 +781,37 @@ app.ui=(function(){
         if(draw){
             draw();
         }
-    },"block":function(block_it){
+    },
+	"block":function(block_it){
         if(block_it != undefined) {
             allowdrag=block_it?false:true;
         } else {
             return !allowdrag;
         }
-    },"legend":function(show_legend){
+    },
+	"legend":function(show_legend){
         if(show_legend !== undefined) {
             $("#funcs").toggle(!!show_legend);
         } else {
             return $("#funcs:visible").length > 0
         }
-    },"get_scale":function() {
+    },
+	"get_scale":function() {
         return [scalex,scaley,scalez];
-    },"set_scale":function(x,y,z){
+    },
+	"set_scale":function(x,y,z){
         scalex=x||1;
         scaley=y||x||1;
         scalez=y||x||1;
         draw();
-    },"scale":function(x,y,z){
+    },
+	"scale":function(x,y,z){
         scalex*=x||1;
         scaley*=y||x||1;
         scalez*=y||x||1;
         draw();
-    },"bounds":function(x1,x2,y1,y2,z1,z2){
+    },
+	"bounds":function(x1,x2,y1,y2,z1,z2){
     
     /*
     The trick to this was using the average to set the center (see center()) and 
@@ -845,8 +854,31 @@ app.ui=(function(){
         cy=scaley*(y||0)+height/2;
         cz=scalez*(z||0)-width/2;
         draw();
-    },"init":function(fullscreen){
-    (new Image()).src="grabbing.gif";
+    },
+    "insertText":function(s){
+      if(!ul){
+        ul=document.getElementById("graphs");
+      }
+	  
+	  for(x in ul.lastChild.children) {
+		try {
+		x.mathquill().appendTo(x).mathquill('latex',s);
+		} catch(e){}
+		
+	  }
+		
+		//alert(ul.lastChild.children.each(function () {
+		//	alert("CHILD"/*$(this).text()*/); // "this" is the current element in the loop
+		//}));
+		//var _editor = ul.lastChild.getElement=ById("inputBox");
+		//alert(_editor.id);
+		//_editor.mathquill().appendTo(ul.lastChild.lastChild.id).mathquill('latex',s)
+	  //ul.lastChild.inputbox(document.createTextNode(s));
+	  //ul.last().appendChild(documeSnt.createTextNode(s));
+	  
+    },
+	"init":function(fullscreen){
+    (new Image()).src="images/grabbing.gif";
     canvas=document.createElement("canvas");
     if(fullscreen){
       canvas.width=window.innerWidth;
@@ -906,9 +938,9 @@ app.ui=(function(){
         var newcalcbtn=document.createElement("input");
         newcalcbtn.value="log";
         newcalcbtn.type="calcbutton";
-        newcalcbtn.title=app.ui.messages.log10;
-        newcalcbtn.onclick=function(){app.log10()};
-        app.ui.buttons.log10 = newcalcbtn;
+        newcalcbtn.title=app.ui.messages.log;
+        newcalcbtn.onclick=function(){app.log()};
+        app.ui.buttons.log = newcalcbtn;
         mathbuttons.appendChild(newcalcbtn);
 	
 	calc.appendChild(mathbuttons);

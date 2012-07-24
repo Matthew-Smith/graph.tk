@@ -27,3 +27,50 @@
   border-radius:20px; 
   -moz-border-radius:20px;
 }
+
+#boxes #load {
+	width:800px; 
+	padding:10px;
+	background-color:#ffffff;
+	border:2px solid #a1a1a1;
+	border-radius:20px; 
+	-moz-border-radius:20px;
+}
+
+.close {
+	position: absolute;
+	font-size:12px;
+	right:10px;
+	bottom:10px;
+	border:1px solid #ececec;
+	padding:3px;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgba(194,194,194,0.8)),
+	    color-stop(1, rgba(239,239,239,0.8))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgba(194,194,194,0.8) 0%,
+	    rgba(239,239,239,0.8) 100%
+	);
+}
+.close:hover {
+	border:1px solid #000000;	
+}
+.close:active {
+	background-image: -webkit-gradient(
+	    linear,
+	    right top,
+	    right bottom,
+	    color-stop(0, rgba(194,194,194,0.8)),
+	    color-stop(1, rgba(239,239,239,0.8))
+	);
+	background-image: -moz-linear-gradient(
+	    center top,
+	    rgba(194,194,194,0.8) 0%,
+	    rgba(239,239,239,0.8) 100%
+	);
+}

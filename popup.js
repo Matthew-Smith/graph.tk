@@ -15,8 +15,9 @@ $(document).ready(function() {
 		//Set heigth and width to mask to fill up the whole screen
 		$('#mask').css({'width':maskWidth,'height':maskHeight});
 		
+		$('#load').css({'height':0.9*$(document).height()});
+		
 		//transition effect		
-		$('#mask').fadeIn(1000);	
 		$('#mask').fadeTo("slow",0.8);	
 	
 		//Get the window height and width
@@ -28,7 +29,7 @@ $(document).ready(function() {
 		$(id).css('left', winW/2-$(id).width()/2);
 	
 		//transition effect
-		$(id).fadeIn(2000); 
+		$(id).fadeIn('slow'); 
 	
 	});
 	
@@ -37,13 +38,13 @@ $(document).ready(function() {
 		//Cancel the link behavior
 		e.preventDefault();
 		
-		$('#mask').hide();
+		$('#mask').fadeOut('slow');
 		$('.window').hide();
 	});		
 	
 	//if mask is clicked
 	$('#mask').click(function () {
-		$(this).hide();
+		$(this).fadeOut('slow');
 		$('.window').hide();
 	});			
 

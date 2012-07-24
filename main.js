@@ -592,6 +592,12 @@ app.png=function(){
 app.calculator=function(){
     app.ui.calculator.toggle();
 };
+app.integral=function(){
+	app.ui.insertText("\\int ");
+};
+app.log=function(){
+	app.ui.insertText("\\log ");
+};
 app.get_state=function() {
   var res = {};
   res.graphs = {};

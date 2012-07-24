@@ -47,7 +47,7 @@
 				<a href="#">File</a>
 				<ul>  
 					<li><a href="#">Save</a></li>  
-					<li><a href="#">Load</a></li> 
+					<li><a href="#load" name="modal">Load</a></li> 
 				</ul> 
 			</li>  
 			<li>
@@ -60,15 +60,12 @@
 		</ul>  
 		<br style="clear: left" />
 	</div>
-
-	<div id="graphSection" class="graphsection">
 		
-		<!--[if IE]><script type="text/javascript" src="excanvas.compiled.js"></script><![endif]-->
-		<script type="text/javascript" src="mathquill_modified.js"></script>
-		<script type="text/javascript" src="math.js"></script>
-		<script type="text/javascript" src="ui.js"></script>
-		<script type="text/javascript" src="main.js"></script>
-	</div>
+	<!--[if IE]><script type="text/javascript" src="excanvas.compiled.js"></script><![endif]-->
+	<script type="text/javascript" src="mathquill_modified.js"></script>
+	<script type="text/javascript" src="math.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+	<script type="text/javascript" src="main.js"></script>
 	
 	<div id="boxes">
 
@@ -83,6 +80,12 @@
 			it under the terms of the <a href="http://www.gnu.org/licenses/lgpl.html" target="_blank">GNU Lesser General Public License</a>
 			as published by the Free Software Foundation, either version 3 of the License, or
 			(at your option) any later version.</p>
+			<input type="submit" value="Close" class="close"/>
+		</div>
+		
+		<div id="load" class="window">
+			<p> Put loading pages here</p>
+			<input type="submit" value="Close" class="close"/>
 		</div>
 
 		<!-- Mask to cover the whole screen -->
