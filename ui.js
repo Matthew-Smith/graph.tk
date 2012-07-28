@@ -775,7 +775,7 @@ app.ui=(function(){
     return li;
   },
   "colors":{
-    "free":("#000,#f08,#8f0,#80f,#880,#088,#808,#0ff,#f80,#f0f,#0a0,#f00,#07c".split(",")),
+    "free":("#000,#f08,#8f0,#80f,#880,#088,#808,#0ff,#f80,#f0f,#0a0,#f00,#07c".split(","))
   },
   "refresh":function(){
         if(draw){
@@ -859,10 +859,16 @@ app.ui=(function(){
       if(!ul){
         ul=document.getElementById("graphs");
       }
+      
+        mathbox=ul.getElementById("inputbox");
+        
+        alert(matbox.id);
 	  
-	  for(x in ul.lastChild.children) {
+	  for(x in ul.children) {
 		try {
-		x.mathquill().appendTo(x).mathquill('latex',s);
+                    x.mathquill('write','\\frac{d}{dx}');
+                
+		//x.mathquill().appendTo(x).mathquill('latex',s);
 		} catch(e){}
 		
 	  }
@@ -975,6 +981,8 @@ app.ui=(function(){
     var _proto_math=document.createElement("span");
     _proto_math.className="matheditor";
     var _proto_del=document.createElement("span");
+    _proto_del.textContent="X";
+    _proto_del
     _proto_del.className="delete";
         _proto.appendChild(_proto_div);
     _proto.appendChild(_proto_math);

@@ -10,109 +10,95 @@ body{
 }
 .overlay{
     position:fixed;
-    -webkit-box-shadow:0px 0px 5px black;
-    -moz-box-shadow:0px 0px 5px black;
-    -o-box-shadow:0px 0px 5px black;
-    box-shadow:0px 0px 5px black;
-    box-shadow:0px 0px 5px black;
+    border: 1px solid #006bb3;
     
-    z-Index:1;
+    z-index: 1;    
     color:black;
-    opacity:0.8;
     padding:4px;
-    background:#eee;
+    background:#ffffff;
 }
 li:hover .delete{visibility:visible}
 .delete{
-    background:url(images/buttons.png) no-repeat;
-	width:20px;
-	visibility:hidden;
-	height:21px;
-	background-position:-30px -21px;
-	display: inline-block;
-	position:absolute;
-	right:0;
-	top:0;
-	opacity:0.5;
-	margin:8px;
+    text-align: center;
+    font-size: 20px;
+    color: #ffffff;
+    background: #ff0000;
+    border: 1px solid #ff0000;
+    width:20px;
+    height:21px;
+    visibility:hidden;
+    display: inline-block;
+    position:absolute;
+    right:0;
+    top:0;
+    margin:8px;
     cursor:pointer;
 }
 .delete:hover{
-    opacity:1.0;
+    border: 1px solid #000000;
+}
+
+.delete:active{
+    border: 1px solid #000000;
+    background-color: #dd0000;
 }
 
 #calc{
-	background:white;
+    background-color: #0099ff;
     bottom:5px;
     right:10px;
-	height:136px;
-	width:311px;
+    height:136px;
+    width:311px;
     font-size:small;
     padding:2px;
-    border:2px solid #eee;
-    opacity:0.8;
+    border:1px solid #006bb3;
 }
 
 input[type=button]:hover{
-	opacity:1.0;
+    opacity:1.0;
 }
 input[type=button]:active{
-	opacity:1.0;
-	border:1px solid #333333;
-	border-radius:3px;
-	-moz-border-radius:3px;
+    opacity:1.0;
+    border:1px solid #333333;
+    border-radius:3px;
+    -moz-border-radius:3px;
 }
 input[type=button]{
-	background:url(images/buttons.png);
-	border:none;
-	opacity:0.9;
-	width:30px;
-	height:21px;
-	color:rgba(0,0,0,0.0);
-	margin-left:4px;
-	margin-top:3px;
-	margin-bottom:4px;
+    background:url(images/buttons.png);
+    border:none;
+    opacity:0.9;
+    width:30px;
+    height:21px;
+    color:rgba(0,0,0,0.0);
+    margin-left:4px;
+    margin-top:3px;
+    margin-bottom:4px;
 }
 
 input[type=calcbutton]:hover{
-	opacity:1.0;
+    opacity:1.0;
 }
 input[type=calcbutton]:active{
-	opacity:1.0;
-	border:1px solid #333333;
-	border-radius:3px;
-	-moz-border-radius:3px;
+    opacity:1.0;
+    border:1px solid #333333;
+    border-radius:3px;
+    -moz-border-radius:3px;
 }
 input[type=calcbutton]{
-	background:url(images/calculator_buttons.png);
-	border:none;
-	opacity:0.5;
-	width:34px;
-	height:27px;
-	color:rgba(0,0,0,0.0);
-	margin-left:1px;
-	margin-top:1px;
+    background:url(images/calculator_buttons.png);
+    border:none;
+    width:34px;
+    height:27px;
+    color:rgba(0,0,0,0.0);
+    margin-left:1px;
+    margin-top:1px;
 }
 
 
 h3{text-align:center;padding-top:1em}
 .buttons{
     position:relative;
-	border-top:1px solid #ececec;
-	background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0, rgba(194,194,194,0.8)),
-	    color-stop(1, rgba(239,239,239,0.8))
-	);
-	background-image: -moz-linear-gradient(
-	    center bottom,
-	    rgba(194,194,194,0.8) 0%,
-	    rgba(239,239,239,0.8) 100%
-	);
-	background-color: #e8e8e8;
-	
+    background-color: #0099ff;
 }
 .buttons a{
     text-decoration:none;
@@ -123,19 +109,19 @@ h3{text-align:center;padding-top:1em}
     right:0;
 }
 input[value=".png"]{
-	background-position:30px 0px;
+    background-position:30px 0px;
 }
 input[value="calculator"]{
-	background-position:0px -21px;
+    background-position:0px -21px;
 }
 input[value="config"]{
-	background-position:-30px 21px;
+    background-position:-30px 21px;
 }
 #funcs{
-	top:33px;
+    top:33px;
     right:10px;
-	opacity:1.0;
-    background:rgba(255,255,255,0.8);
+    opacity:1.0;
+    background: #ffffff;
     padding:0;
 }
 #funcs ul{
@@ -143,7 +129,7 @@ input[value="config"]{
     width:300px;
 }
 #funcs ul li:last-child .b{
-	border-bottom:none;
+    border-bottom:none;
 }
 #funcs ul li:only-child .delete{
     display:none;
@@ -167,31 +153,26 @@ input[value="config"]{
     content:"!";
 }
 #funcs ul .b{
-	text-align:center;
-	width:34px;
-	position:absolute;
-	top:0;
-	bottom:0;
-	padding-top:8px;
-	border-top:1px solid rgba(255,255,255,0.7);
-	border-left:1px solid rgba(255,255,255,0.4);
-	border-right:1px solid rgba(0,0,0,0.7);
-	border-bottom:1px solid rgba(0,0,0,0.85);
-	background:url(images/sw.png) repeat-x;
-	margin-right:3px;
-	
+    text-align:center;
+    width:34px;
+    position:absolute;
+    top:0;
+    bottom:0;
+    padding-top:8px;
+    margin-right:3px;
+
 }
 
 #funcs ul li{
     border-bottom:1px solid #444;
-	vertical-align:center;
-	min-height:35px;
-	position:relative;
+    vertical-align:center;
+    min-height:35px;
+    position:relative;
 }
 #funcs ul li .matheditor{
-	margin-top:5px;
-	margin-left:38px;
-	margin-bottom:4px;
+    margin-top:5px;
+    margin-left:38px;
+    margin-bottom:4px;
 }
 
 #ptd{
@@ -212,6 +193,70 @@ input[value="config"]{
 
 .monospace{
     font-family:'Menlo','Andale Mono', Consolas, 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Monaco, monofur, monospace;
+}
+
+.loadTable
+{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse:collapse;   
+    border: 0px;
+    width: 100%;
+    cursor: pointer;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+}
+
+.loadTable tbody{
+    overflow: auto;
+    width: 100%;
+}
+
+.loadTable thead{
+    background-color: #0099ff;
+}
+
+.loadTable tbody tr {
+    background: #e4f6ff;
+}
+
+.loadTable tbody tr:hover {
+    background: #7ed4ff;
+}
+
+.loadTable tbody tr:active {
+    background: #ffc400;
+}
+
+.loadTable tbody td {
+    width:200px;
+    text-align: center;
+    padding:5px;
+}
+
+.loadTable tbody tr.even {
+    background: #b1e5ff;
+    cursor: pointer;
+}
+
+.loadTable tbody tr.even:hover {
+    background: #7ed4ff;
+}
+
+.loadTable tbody tr.even:active {
+    background: #ffc400;
+}
+
+.date .day {
+    font-size: 35px;
+}
+
+.date .month {
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+.date .year {
+    display: block;
 }
 
 
@@ -258,15 +303,12 @@ ul.json{
     font-family:Menlo, Monaco, monospace;
     font-size:11px;
 }
-
-
-
 /*Mathquill overrides*/
 .mathquill-editable{
-	border:none !important;
+    border:none !important;
 }
 
 
 .mathquill-editable .selection.blur, .mathquill-editable .selection.blur .mathquill-rendered-math, .mathquill-editable .selection.blur sup, .mathquill-editable .selection.blur sub{
-	background:none !important;
+    background:none !important;
 }
