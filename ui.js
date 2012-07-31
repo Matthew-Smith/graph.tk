@@ -981,8 +981,6 @@ app.ui=(function(){
     var _proto_math=document.createElement("span");
     _proto_math.className="matheditor";
     var _proto_del=document.createElement("span");
-    _proto_del.textContent="X";
-    _proto_del
     _proto_del.className="delete";
         _proto.appendChild(_proto_div);
     _proto.appendChild(_proto_math);

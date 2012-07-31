@@ -34,7 +34,7 @@ $(document).ready(function() {
 	});
 	
 	//if close button is clicked
-	$('.window .close').click(function (e) {
+	$('.window #close').click(function (e) {
 		//Cancel the link behavior
 		e.preventDefault();
 		

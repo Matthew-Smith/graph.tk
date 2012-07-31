@@ -41,29 +41,19 @@
     background-color:#ffffff;
 }
 
-.loadDiv {
-    border-bottom: 1px solid #0099ff;
-    border-top: 1px solid #0099ff;
-    width:100%;
-    height:470px;
-    overflow:auto;
-}
-
-.close {
-    position: absolute;
+.popupbutton {
+    margin: 5px;
     font-size:20px;
-    right:10px;
-    bottom:10px;
     border:0px;
     height: 50px;
     width: 100px;
     background:#0099ff;
 }
 
-.close:hover {
+.popupbutton:hover {
     background: #9ad7ff;
 }
 
-.close:active {
+.popupbutton:active {
     background: #ff944d;
 }

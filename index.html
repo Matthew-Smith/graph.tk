@@ -13,12 +13,14 @@
         <link rel="stylesheet" type="text/css" href="mathquill.css" />
         <link rel="stylesheet" type="text/css" href="main.css" />
         <link rel="stylesheet" type="text/css" href="popup.css" />
-        <link rel="stylesheet" type="text/css" href="LoadTable.css" />  
+        <link rel="stylesheet" type="text/css" href="SelectableTable.css" />  
 
         <link rel="stylesheet" type="text/css" href="ddsmoothmenu.css" />
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="popup.js"></script>
         <script type="text/javascript" src="ddsmoothmenu.js"></script>
+        <script type="text/javascript" src="SelectableTable.js"></script>
+
         <script type="text/javascript">
             ddsmoothmenu.init({
                 mainmenuid: "topmenu", //menu DIV id
@@ -63,7 +65,7 @@
         </div>
 
         <!--[if IE]><script type="text/javascript" src="excanvas.compiled.js"></script><![endif]-->
-        <script type="text/javascript" src="mathquill_modified.js"></script>
+        <script type="text/javascript" src="mathquill.js"></script>
         <script type="text/javascript" src="math.js"></script>
         <script type="text/javascript" src="ui.js"></script>
         <script type="text/javascript" src="main.js"></script>
@@ -81,146 +83,18 @@
                     it under the terms of the <a href="http://www.gnu.org/licenses/lgpl.html" target="_blank">GNU Lesser General Public License</a>
                     as published by the Free Software Foundation, either version 3 of the License, or
                     (at your option) any later version.</p>
-                <input type="submit" value="Close" class="close"/>
+                <div style="text-align:right;">
+                    <input type="submit" value="Close" class="popupbutton" id="close"/>
+                </div>
             </div>
 
             <div id="load" class="window">
                 <h1>Load a graph</h1>
-                <div class="loadDiv">
-                <table class="loadTable">
-                    <thead class="fixedHeader">
-                        <tr>
-                            <th>Icon</th>
-                            <th>User</th>
-                            <th>Last Guess</th>        
-                            <th>Modified</th>
-                        </tr>
-                    </thead>
-                    <tbody class="scrollPane">
-                        <tr>
-                            <td class="icon">
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td class="user">Matthew Smith</td>
-                            <td class="equation">
-                                <img src="http://latex.codecogs.com/gif.latex?x^3"></td>
-                            <td class="modified">
-                                <div class="date">
-                                    <span class="day">25</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Denis Dionne</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?2x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">23</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Matthew Smith</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">25</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Denis Dionne</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?2x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">23</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Matthew Smith</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">25</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Denis Dionne</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?2x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">23</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Matthew Smith</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">25</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td>
-                                <img src="images/icon_48.png">
-                            </td>
-                            <td>Denis Dionne</td>
-                            <td>
-                                <img src="http://latex.codecogs.com/gif.latex?2x^3"></td>
-                            <td>
-                                <div class="date">
-                                    <span class="day">23</span>
-                                    <span class="month">July</span>
-                                    <span class="year">2012</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                    
-                <input type="submit" value="Cancel" class="close"/>
+                <div id="tableDiv"></div>
+                <div style="text-align:right;">
+                    <input type="submit" value="Insert Row" class="popupbutton" id="insertButton"/>
+                    <input type="submit" value="Cancel" class="popupbutton" id="close"/>
+                    <input type="submit" value="Load" class="popupbutton" id="submitButton"/>
                 </div>
             </div>
 
